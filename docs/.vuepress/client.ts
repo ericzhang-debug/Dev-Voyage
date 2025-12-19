@@ -1,5 +1,7 @@
 import { defineClientConfig } from 'vuepress/client'
 import CustomHomeLayout from './layouts/CustomHomeLayout.vue'
+import ProjectsLayout from './layouts/ProjectsLayout.vue'
+import PostTimelineLayout from './layouts/PostTimelineLayout.vue'
 // import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 // import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
 // import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
@@ -12,6 +14,8 @@ import CustomHomeLayout from './layouts/CustomHomeLayout.vue'
 export default defineClientConfig({
   layouts: {
     CustomHomeLayout,
+    ProjectsLayout,
+    PostTimelineLayout,
   },
   enhance({ app }) {
     // built-in components
