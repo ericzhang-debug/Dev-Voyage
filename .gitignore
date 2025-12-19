@@ -6,3 +6,8 @@ docs/.vuepress/dist
 
 .DS_Store
 *.log
+
+.spec-workflow
+.serena/*.sqlite
+.serena/*.db
+.serena/memories/
