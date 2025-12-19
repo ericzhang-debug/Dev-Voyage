@@ -1,185 +1,215 @@
-# FullStack-Voyage
-全栈开发培训教程平台
+<div align="center">
 
-## 项目简介 / Project Introduction
+# 🚀 Dev Voyage
 
-**FullStack-Voyage** 是一个由计算机信息交流协会 (CIC) 开发的全栈开发培训教程平台。该项目旨在为学习者提供系统化的全栈开发知识，通过互动式文档网站展示各类技术教程和示例。
+**CIC 计算机信息交流协会 · 开发者成长之旅**
 
-**FullStack-Voyage** is a full-stack development training tutorial platform developed by the Computer Information Exchange Association (CIC). This project aims to provide learners with systematic full-stack development knowledge, showcasing various technical tutorials and examples through an interactive documentation website.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/Node.js-%3E%3D20.6.0-brightgreen)](https://nodejs.org/)
+[![VuePress](https://img.shields.io/badge/VuePress-2.0.0--rc-42b883)](https://vuepress.vuejs.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-package%20manager-f69220)](https://pnpm.io/)
 
-## 技术栈 / Technology Stack
+[📖 在线文档](https://ecustcic-codehub.github.io/FullStack-Voyage/) · [🐛 问题反馈](https://github.com/ECUSTCIC-CodeHub/FullStack-Voyage/issues) · [💡 功能建议](https://github.com/ECUSTCIC-CodeHub/FullStack-Voyage/issues/new)
 
-### 前端 / Frontend
-- **Vue 3**：渐进式 JavaScript 框架
-- **VuePress**：静态网站生成器
-- **VuePress Theme Plume**：现代化的 VuePress 主题
-- **TypeScript**：类型安全的 JavaScript 超集
-
-- **Vue 3**: Progressive JavaScript framework
-- **VuePress**: Static site generator
-- **VuePress Theme Plume**: Modern VuePress theme
-- **TypeScript**: Type-safe JavaScript superset
-
-### 功能增强 / Feature Enhancement
-- **Shiki TwoSlash**：代码高亮和交互式代码示例
-- **Chart.js/ECharts**：数据可视化
-- **Mermaid**：流程图和图表生成
-- **Flowchart.ts**：交互式流程图
-- **Pyodide**：WebAssembly 版 Python，支持在线 Python 代码执行
-
-- **Shiki TwoSlash**: Code highlighting and interactive code examples
-- **Chart.js/ECharts**: Data visualization
-- **Mermaid**: Flowchart and diagram generation
-- **Flowchart.ts**: Interactive flowcharts
-- **Pyodide**: WebAssembly version of Python, supporting online Python code execution
-
-## 快速开始 / Quick Start
-
-### 环境要求 / Environment Requirements
-- Node.js: ^20.6.0 || >=22.0.0
-- pnpm: 推荐使用 pnpm 作为包管理器
-- pnpm: Recommended package manager
-
-### 安装 / Installation
-```bash
-pnpm install
-```
-
-### 开发 / Development
-```bash
-# 启动开发服务器
-pnpm docs:dev
-
-# 启动开发服务器（清除缓存和临时文件）
-pnpm docs:dev-clean
-
-# Start development server
-pnpm docs:dev
-
-# Start development server (clear cache and temporary files)
-pnpm docs:dev-clean
-```
-
-### 构建和预览 / Build and Preview
-```bash
-# 构建生产版本
-pnpm docs:build
-
-# 本地预览生产构建
-pnpm docs:preview
-
-# 更新 VuePress 和主题
-pnpm vp-update
-
-# Build for production
-pnpm docs:build
-
-# Preview production build locally
-pnpm docs:preview
-
-# Update VuePress and theme
-pnpm vp-update
-```
-
-## 项目结构 / Project Structure
-
-```
-docs/
-├── .vuepress/         # VuePress 配置目录
-│   ├── config.ts      # 主配置文件
-│   ├── navbar.ts      # 导航栏配置
-│   ├── collections.ts # 内容集合配置
-│   ├── theme/         # 自定义主题配置
-│   └── public/        # 静态资源
-├── course/            # 课程内容
-│   ├── README.md      # 课程首页
-│   ├── 0.md-4.md      # 课程章节
-├── blog/              # 博客内容
-├── post/              # 文章内容
-└── README.md          # 网站首页
-```
-
-```
-docs/
-├── .vuepress/         # VuePress configuration directory
-│   ├── config.ts      # Main configuration file
-│   ├── navbar.ts      # Navigation bar configuration
-│   ├── collections.ts # Content collections configuration
-│   ├── theme/         # Custom theme configuration
-│   └── public/        # Static assets
-├── course/            # Course content
-│   ├── README.md      # Course homepage
-│   ├── 0.md-4.md      # Course chapters
-├── blog/              # Blog content
-├── post/              # Article content
-└── README.md          # Website homepage
-```
-
-## 主要功能 / Main Features
-
-- **结构化课程**：系统化的全栈开发学习路径
-- **交互式代码示例**：支持多种编程语言的代码运行和演示
-- **数据可视化教程**：使用 Chart.js 和 ECharts 进行数据展示
-- **流程图生成**：使用 Mermaid 和 Flowchart.ts 创建各类图表
-- **响应式设计**：适配各种屏幕尺寸的设备
-
-- **Structured Courses**: Systematic full-stack development learning path
-- **Interactive Code Examples**: Support for running and demonstrating code in multiple programming languages
-- **Data Visualization Tutorials**: Data display using Chart.js and ECharts
-- **Flowchart Generation**: Create various diagrams using Mermaid and Flowchart.ts
-- **Responsive Design**: Adapt to devices of various screen sizes
-
-## 部署到 GitHub Pages / Deploy to GitHub Pages
-
-该项目已配置 GitHub Actions 自动部署：
-
-This project has been configured with GitHub Actions for automatic deployment:
-
-1. 在 GitHub 仓库设置中：
-   - 开启 Actions 读写权限
-   - 配置 Pages 从 gh-pages 分支部署
-
-1. In GitHub repository settings:
-   - Enable Actions read and write permissions
-   - Configure Pages to deploy from the gh-pages branch
-
-2. 根据需要修改`docs/.vuepress/config.ts`中的`base`选项
-
-2. Modify the `base` option in `docs/.vuepress/config.ts` as needed
-
-## 贡献指南 / Contribution Guidelines
-
-欢迎对项目进行贡献！请按照以下步骤：
-
-Contributions to the project are welcome! Please follow these steps:
-
-1. Fork 项目仓库
-2. 创建特性分支
-3. 提交更改
-4. 推送到分支
-5. 发起 Pull Request
-
-1. Fork the project repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Submit a Pull Request
-
-## 许可证 / License
-
-本项目采用 MIT 许可证。详情请查看 LICENSE 文件。
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## 联系方式 / Contact
-
-项目维护者：XuChenXu
-GitHub：https://github.com/ChenXu233
-
-Project Maintainer: XuChenXu
-GitHub: https://github.com/ChenXu233
+</div>
 
 ---
 
-*全栈开发的旅程，从这里开始！*
-*The journey of full-stack development starts here!*
+## 📚 项目简介
+
+**Dev Voyage** 是由华东理工大学计算机信息交流协会 (CIC) 开发维护的技术学习平台。
+
+我们致力于为协会成员和广大计算机爱好者提供：
+
+- 🎯 **系统化的学习路径** —— 从基础到实战，循序渐进
+- 💻 **项目驱动的教学** —— 边做边学，每章都有可见成果
+- 🌟 **真实项目案例** —— 学长学姐的优秀项目展示与分享
+- 🤝 **社区互助氛围** —— 一起学习，共同成长
+
+---
+
+## 🗂️ 内容导航
+
+### 📘 全栈开发课程
+
+> 从零开始，手把手带你搭建完整的全栈博客系统
+
+| 阶段 | 内容 | 技术栈 |
+|:---:|------|--------|
+| **第一阶段** | 快速起步 · 环境搭建 · 第一个全栈页面 | Nuxt 3 + FastAPI |
+| **第二阶段** | 个人主页 · 文章系统 · 数据库 | Vue 3 + SQLite |
+| **第三阶段** | 用户系统 · 权限管理 · 评论互动 | JWT + Pinia |
+| **第四阶段** | 样式美化 · 性能优化 · 部署上线 | Tailwind CSS + Docker |
+
+### 🔧 基础技能教程
+
+> 计算机开发必备的基础知识
+
+| 教程 | 简介 |
+|------|------|
+| **命令行基础** | 终端使用、常用命令、Shell 基础 |
+| **系统知识** | 操作系统概念、文件系统、进程管理 |
+| **版本控制** | Git 基础、分支管理、协作开发 |
+
+### 🏆 项目案例
+
+> 学长学姐的优秀项目展示，提供灵感与参考
+
+*持续更新中...*
+
+---
+
+## 🛠️ 技术栈
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+### 📦 核心框架
+
+</td>
+<td align="center" width="50%">
+
+### ✨ 功能增强
+
+</td>
+</tr>
+<tr>
+<td>
+
+- **Vue 3** - 渐进式 JavaScript 框架
+- **VuePress 2** - 静态网站生成器
+- **Theme Plume** - 现代化文档主题
+- **TypeScript** - 类型安全
+
+</td>
+<td>
+
+- **Shiki TwoSlash** - 代码高亮与交互
+- **Chart.js / ECharts** - 数据可视化
+- **Mermaid** - 流程图绘制
+- **Pyodide** - 在线 Python 执行
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 快速开始
+
+### 环境要求
+
+- **Node.js**: `^20.6.0` 或 `>=22.0.0`
+- **pnpm**: 推荐使用 pnpm 作为包管理器
+
+### 本地运行
+
+```bash
+# 克隆仓库
+git clone https://github.com/ECUSTCIC-CodeHub/FullStack-Voyage.git
+cd FullStack-Voyage
+
+# 安装依赖
+pnpm install
+
+# 启动开发服务器
+pnpm docs:dev
+```
+
+### 常用命令
+
+| 命令 | 说明 |
+|------|------|
+| `pnpm docs:dev` | 启动开发服务器 |
+| `pnpm docs:dev-clean` | 清除缓存后启动 |
+| `pnpm docs:build` | 构建生产版本 |
+| `pnpm docs:preview` | 本地预览构建结果 |
+| `pnpm vp-update` | 更新 VuePress |
+
+---
+
+## 📁 项目结构
+
+```
+FullStack-Voyage/
+├── docs/
+│   ├── .vuepress/           # VuePress 配置
+│   │   ├── config.ts        # 主配置文件
+│   │   ├── navbar.ts        # 导航栏配置
+│   │   ├── theme/           # 主题定制
+│   │   └── public/          # 静态资源
+│   │
+│   ├── fullstack-course/    # 📘 全栈开发课程
+│   │   ├── 0.md ~ 14.md     # 课程章节
+│   │   └── index.md         # 课程首页
+│   │
+│   ├── essential/           # 🔧 基础技能教程
+│   │   ├── command-line/    # 命令行教程
+│   │   ├── elementary-system/ # 系统知识
+│   │   └── git-usage/       # Git 使用
+│   │
+│   ├── projects/            # 🏆 项目案例
+│   ├── blog/                # 📝 博客文章
+│   └── README.md            # 网站首页
+│
+├── package.json
+└── README.md                # 👈 你在这里
+```
+
+---
+
+## 🤝 参与贡献
+
+我们欢迎所有形式的贡献！无论是：
+
+- 🐛 **Bug 修复** - 发现问题？帮我们修复它
+- 📝 **内容完善** - 补充教程内容或修正错误
+- 💡 **功能建议** - 有好的想法？告诉我们
+- 🌟 **项目分享** - 分享你的项目案例
+
+### 贡献步骤
+
+1. **Fork** 本仓库
+2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 发起 **Pull Request**
+
+### 内容编写规范
+
+- 使用 Markdown 编写，保持格式统一
+- 代码示例需经过测试，确保可运行
+- 使用信息框 (:::tip, :::warning 等) 增强可读性
+- 保持轻松幽默的语言风格
+
+---
+
+## 📄 开源协议
+
+本项目采用 [MIT 许可证](./LICENSE) 开源。
+
+---
+
+## 👥 维护团队
+
+<table>
+<tr>
+<td align="center">
+<b>CIC 计算机信息交流协会</b><br/>
+<sub>华东理工大学学生社团</sub>
+</td>
+</tr>
+</table>
+
+**项目维护者**: [@ChenXu233](https://github.com/ChenXu233)
+
+---
+
+<div align="center">
+
+**🌟 如果这个项目对你有帮助，欢迎点个 Star 支持我们！**
+
+*开发者的成长之旅，从这里启航！*
+
+</div>
