@@ -41,30 +41,6 @@ const courseCards = computed(() => [
   }
 ])
 
-// 功能特性数据
-const features = computed(() => [
-  {
-    icon: '🚀',
-    title: '实践驱动',
-    description: '从基础到进阶，每一步都配有实际操作练习'
-  },
-  {
-    icon: '🎯',
-    title: '系统化学习',
-    description: '清晰的学习路径，循序渐进掌握核心技能'
-  },
-  {
-    icon: '🧠',
-    title: '深度理解',
-    description: '不仅知其然，更知其所以然的原理讲解'
-  },
-  {
-    icon: '🛠️',
-    title: '工具栈',
-    description: '掌握现代开发必备的工具链和最佳实践'
-  }
-])
-
 // 技术栈标签
 const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
 </script>
@@ -170,15 +146,23 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
 
-:root {
-  --tech-primary: #00f3ff;
-  --tech-secondary: #bc13fe;
-  --tech-bg: #0a0a12;
-  --tech-panel: rgba(20, 20, 30, 0.6);
-  --tech-border: rgba(0, 243, 255, 0.3);
-}
-
 .tech-container {
+  /* Light Mode Defaults */
+  --tech-primary: #06b6d4;
+  --tech-secondary: #9333ea;
+  --tech-grid-color: rgba(6, 182, 212, 0.05);
+  --tech-glow-color: rgba(147, 51, 234, 0.1);
+  --tech-title-gradient: linear-gradient(to right, #2563eb, #7c3aed);
+  --tech-card-bg: rgba(0, 0, 0, 0.02);
+  --tech-card-border: rgba(0, 0, 0, 0.05);
+  --tech-btn-secondary-bg: rgba(0, 0, 0, 0.05);
+  --tech-btn-secondary-border: rgba(0, 0, 0, 0.1);
+  --tech-pill-bg: rgba(0, 0, 0, 0.05);
+  --tech-tag-bg: rgba(6, 182, 212, 0.1);
+  --tech-tag-border: rgba(6, 182, 212, 0.2);
+  --tech-ring-color: rgba(147, 51, 234, 0.4);
+  --tech-icon-shadow: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+
   min-height: calc(100vh - var(--vp-nav-height));
   background-color: var(--vp-c-bg);
   color: var(--vp-c-text-1);
@@ -188,13 +172,31 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
   padding-bottom: 60px;
 }
 
+:global(.dark) .tech-container {
+  /* Dark Mode Overrides */
+  --tech-primary: #00f3ff;
+  --tech-secondary: #bc13fe;
+  --tech-grid-color: rgba(0, 243, 255, 0.03);
+  --tech-glow-color: rgba(188, 19, 254, 0.15);
+  --tech-title-gradient: linear-gradient(to right, #afff, #a5b4fc);
+  --tech-card-bg: rgba(255, 255, 255, 0.03);
+  --tech-card-border: rgba(255, 255, 255, 0.1);
+  --tech-btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --tech-btn-secondary-border: rgba(255, 255, 255, 0.2);
+  --tech-pill-bg: rgba(255, 255, 255, 0.05);
+  --tech-tag-bg: rgba(0, 243, 255, 0.1);
+  --tech-tag-border: rgba(0, 243, 255, 0.2);
+  --tech-ring-color: rgba(188, 19, 254, 0.4);
+  --tech-icon-shadow: drop-shadow(0 0 20px rgba(0, 243, 255, 0.5));
+}
+
 /* Background Effects */
 .cyber-grid {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--tech-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tech-grid-color) 1px, transparent 1px);
   background-size: 40px 40px;
   transform: perspective(500px) rotateX(60deg) translateY(-100px) scale(2);
   transform-origin: top center;
@@ -209,7 +211,7 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
   right: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(188, 19, 254, 0.15), transparent 70%);
+  background: radial-gradient(circle, var(--tech-glow-color), transparent 70%);
   filter: blur(60px);
   pointer-events: none;
   z-index: 0;
@@ -244,7 +246,7 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, #afff, #a5b4fc);
+  background: var(--tech-title-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -263,7 +265,7 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
   gap: 0.5rem;
 }
 
-.terminal-prompt { color: #00f3ff; }
+.terminal-prompt { color: var(--tech-primary); }
 .cursor { animation: blink 1s step-end infinite; }
 
 @keyframes blink { 50% { opacity: 0; } }
@@ -308,9 +310,9 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
 }
 
 .tech-btn.secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--tech-btn-secondary-bg);
   color: var(--vp-c-text-1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--tech-btn-secondary-border);
 }
 
 .tech-btn.secondary:hover {
@@ -338,9 +340,9 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
 
 .tech-tag {
   padding: 4px 8px;
-  background: rgba(0, 243, 255, 0.1);
+  background: var(--tech-tag-bg);
   color: var(--vp-c-brand-1);
-  border: 1px solid rgba(0, 243, 255, 0.2);
+  border: 1px solid var(--tech-tag-border);
   border-radius: 2px;
 }
 
@@ -364,7 +366,7 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
 .hologram-circle {
   position: absolute;
   inset: 0;
-  border: 2px solid rgba(0, 243, 255, 0.2);
+  border: 2px solid var(--tech-tag-border);
   border-radius: 50%;
   animation: spin 10s linear infinite;
 }
@@ -374,22 +376,22 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
   position: absolute;
   top: -5px; left: 50%;
   width: 10px; height: 10px;
-  background: #00f3ff;
-  box-shadow: 0 0 10px #00f3ff;
+  background: var(--tech-primary);
+  box-shadow: 0 0 10px var(--tech-primary);
   border-radius: 50%;
 }
 
 .data-ring {
   position: absolute;
   inset: 40px;
-  border: 1px dashed rgba(188, 19, 254, 0.4);
+  border: 1px dashed var(--tech-ring-color);
   border-radius: 50%;
   animation: spin 15s linear infinite reverse;
 }
 
 .hologram-icon {
   font-size: 5rem;
-  filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.5));
+  filter: var(--tech-icon-shadow);
   animation: float 3s ease-in-out infinite;
 }
 
@@ -432,8 +434,8 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
 }
 
 .tech-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--tech-card-bg);
+  border: 1px solid var(--tech-card-border);
   padding: 2rem;
   position: relative;
   cursor: pointer;
@@ -492,7 +494,7 @@ const techStack = ['Terminal', 'Bash', 'Git', 'Linux', 'CLI', 'DevTools']
 .feature-pill {
   font-size: 0.75rem;
   padding: 2px 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--tech-pill-bg);
   border-radius: 10px;
   color: var(--vp-c-text-2);
 }

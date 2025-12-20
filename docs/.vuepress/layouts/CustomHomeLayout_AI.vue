@@ -880,7 +880,7 @@ onMounted(() => {
   .hero-section,
   .features-section,
   .latest-section {
-    padding: 60px 20px;
+    padding: 40px 16px;
   }
 
   .hero-badge {
@@ -888,9 +888,19 @@ onMounted(() => {
     padding: 6px 12px;
   }
 
+  .visual-card {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .hero-image {
+    width: 90%;
+  }
+
   .feature-card,
   .post-card {
-    padding: 24px;
+    padding: 20px;
   }
 
   .actions-group {

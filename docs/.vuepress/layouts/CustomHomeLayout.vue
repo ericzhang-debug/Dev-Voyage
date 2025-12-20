@@ -98,21 +98,6 @@ const hero = computed<Hero>(() => frontmatter.value.config?.[0]?.hero || {})
             </div>
           </div>
         </section>
-
-        <!-- Call To Action / Subscribe -->
-        <!-- <section class="cta-section">
-          <div class="cta-box">
-            <div class="cta-text">
-              <h3>想要收到更新吗？</h3>
-              <p>订阅以获取最新文章与项目实践提醒（示例表单，未连接后端）。</p>
-            </div>
-            <div class="subscribe-input">
-              <input type="email" placeholder="你的邮箱地址" aria-label="email" />
-              <button class="action-btn brand">订阅</button>
-            </div>
-          </div>
-        </section> -->
-
       </div>
     </template>
   </Layout>
@@ -392,6 +377,9 @@ const hero = computed<Hero>(() => frontmatter.value.config?.[0]?.hero || {})
     flex-direction: column-reverse;
     text-align: center;
     gap: 32px;
+  }
+  .image-container {
+    width: clamp(50px, 40vw, 400px);
   }
 
   .hero-text-col {
