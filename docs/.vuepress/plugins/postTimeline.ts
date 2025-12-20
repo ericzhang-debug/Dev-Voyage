@@ -15,7 +15,7 @@ const postTimelinePlugin = (configs: TimelineConfig | TimelineConfig[]) => {
   const configArray = Array.isArray(configs) ? configs : [configs];
   
   // JSON文件存储目录
-  const jsonDir = path.join(process.cwd(), '.vuepress', 'public', 'timelines');
+  const jsonDir = path.join(process.cwd(), "docs",'.vuepress', 'public', 'timelines');
 
   // 时间线处理逻辑（提取为单独函数，方便复用）
   const processTimelines = (app: any) => {
