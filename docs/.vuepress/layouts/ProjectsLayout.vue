@@ -58,17 +58,22 @@ function setCategory(cat: string) {
   <Layout>
     <template #custom-content>
       <div class="projects-container">
-        <!-- Background decoration -->
-        <div class="bg-decoration" aria-hidden="true"></div>
-
+        <!-- Retro Grid Background -->
+        <div class="bg-grid" aria-hidden="true"></div>
+        
         <!-- Hero Section -->
         <section class="hero-section">
           <div class="hero-content">
-            <div class="hero-icon">🏆</div>
+            <div class="hero-decoration-top"></div>
+            <div class="hero-icon-wrapper">
+              <div class="hero-icon">⚡</div>
+            </div>
             <h1 class="hero-title" v-if="hero.name">
-              <span class="gradient-text">{{ hero.name }}</span>
+              <span class="tech-text">{{ hero.name }}</span>
             </h1>
-            <p class="hero-tagline" v-if="hero.tagline">{{ hero.tagline }}</p>
+            <p class="hero-tagline" v-if="hero.tagline">
+              <span class="prompt">></span> {{ hero.tagline }} <span class="cursor">_</span>
+            </p>
             <p class="hero-description" v-if="hero.description">{{ hero.description }}</p>
           </div>
         </section>
@@ -77,8 +82,10 @@ function setCategory(cat: string) {
         <section class="featured-section" v-if="featuredProjects.length > 0">
           <div class="section-container">
             <div class="section-header">
-              <h2 class="section-title">⭐ 精选项目</h2>
-              <p class="section-subtitle">学长学姐们的优秀作品</p>
+              <h2 class="section-title">
+                <span class="section-icon">★</span> 精选项目
+              </h2>
+              <p class="section-subtitle">SELECTED_WORKS // 学长学姐们的优秀作品</p>
             </div>
 
             <div class="featured-grid">
@@ -92,11 +99,15 @@ function setCategory(cat: string) {
                     <span class="project-icon">{{ project.icon || '📦' }}</span>
                   </div>
                   <img v-else :src="project.image" :alt="project.name" />
-                  <div class="featured-badge">精选</div>
+                  <div class="featured-badge">FEATURED</div>
                 </div>
 
                 <div class="featured-content">
-                  <h3 class="project-name">{{ project.name }}</h3>
+                  <div class="content-header">
+                    <h3 class="project-name">{{ project.name }}</h3>
+                    <div class="project-year-badge" v-if="project.year">{{ project.year }}</div>
+                  </div>
+                  
                   <p class="project-desc">{{ project.description }}</p>
 
                   <div class="tech-tags">
@@ -117,8 +128,8 @@ function setCategory(cat: string) {
                         {{ project.author.charAt(0) }}
                       </div>
                       <div class="author-details">
+                        <span class="author-label">AUTHOR</span>
                         <span class="author-name">{{ project.author }}</span>
-                        <span class="project-year" v-if="project.year">{{ project.year }}</span>
                       </div>
                     </div>
 
@@ -127,25 +138,19 @@ function setCategory(cat: string) {
                         v-if="project.github"
                         :href="project.github"
                         target="_blank"
-                        class="link-btn github"
-                        title="查看源码"
+                        class="link-btn"
+                        title="SOURCE CODE"
                       >
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
+                        SRC
                       </a>
                       <a
                         v-if="project.demo"
                         :href="project.demo"
                         target="_blank"
-                        class="link-btn demo"
-                        title="在线演示"
+                        class="link-btn primary"
+                        title="LIVE DEMO"
                       >
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                          <polyline points="15 3 21 3 21 9"/>
-                          <line x1="10" y1="14" x2="21" y2="3"/>
-                        </svg>
+                        DEMO
                       </a>
                     </div>
                   </div>
@@ -165,7 +170,7 @@ function setCategory(cat: string) {
                 :class="['filter-btn', { active: activeCategory === cat }]"
                 @click="setCategory(cat)"
               >
-                {{ cat }}
+                [{{ cat }}]
               </button>
             </div>
           </div>
@@ -175,8 +180,10 @@ function setCategory(cat: string) {
         <section class="projects-section">
           <div class="section-container">
             <div class="section-header" v-if="!featuredProjects.length">
-              <h2 class="section-title">🚀 项目展示</h2>
-              <p class="section-subtitle">探索学长学姐们的创意作品</p>
+              <h2 class="section-title">
+                <span class="section-icon">►</span> 项目展示
+              </h2>
+              <p class="section-subtitle">ALL_PROJECTS // 探索学长学姐们的创意作品</p>
             </div>
 
             <div class="projects-grid" v-if="filteredProjects.length > 0">
@@ -187,7 +194,7 @@ function setCategory(cat: string) {
               >
                 <div class="card-header">
                   <div class="card-icon">{{ project.icon || '📦' }}</div>
-                  <div class="card-category" v-if="project.category">{{ project.category }}</div>
+                  <div class="card-category" v-if="project.category">#{{ project.category }}</div>
                 </div>
 
                 <h3 class="card-title">{{ project.name }}</h3>
@@ -204,11 +211,8 @@ function setCategory(cat: string) {
 
                 <div class="card-footer">
                   <div class="card-author">
-                    <div class="author-avatar-small">
-                      {{ project.author.charAt(0) }}
-                    </div>
+                    <span class="author-prefix">by</span>
                     <span>{{ project.author }}</span>
-                    <span class="author-year" v-if="project.year">· {{ project.year }}</span>
                   </div>
 
                   <div class="card-links">
@@ -217,18 +221,18 @@ function setCategory(cat: string) {
                       :href="project.github"
                       target="_blank"
                       class="card-link"
-                      title="源码"
+                      title="Source"
                     >
-                      📦
+                      GIT
                     </a>
                     <a
                       v-if="project.demo"
                       :href="project.demo"
                       target="_blank"
                       class="card-link primary"
-                      title="演示"
+                      title="Demo"
                     >
-                      🔗
+                      RUN
                     </a>
                   </div>
                 </div>
@@ -237,11 +241,11 @@ function setCategory(cat: string) {
 
             <!-- Empty State -->
             <div class="empty-state" v-else>
-              <div class="empty-icon">🚧</div>
-              <h3 class="empty-title">项目正在收集中...</h3>
+              <div class="empty-icon">⚠</div>
+              <h3 class="empty-title">NO_DATA_FOUND</h3>
               <p class="empty-desc">
-                学长学姐们的优秀项目即将上线，敬请期待！<br/>
-                如果你有项目想要展示，欢迎联系我们～
+                项目数据正在加载或收集中...<br/>
+                Waiting for input...
               </p>
             </div>
           </div>
@@ -252,7 +256,7 @@ function setCategory(cat: string) {
           <div class="section-container">
             <div class="cta-card">
               <div class="cta-content">
-                <h3 class="cta-title">💡 想要展示你的项目？</h3>
+                <h3 class="cta-title">>> SUBMIT_PROJECT</h3>
                 <p class="cta-desc">
                   如果你有优秀的项目想要分享，欢迎提交 PR 或联系协会成员！
                 </p>
@@ -262,7 +266,7 @@ function setCategory(cat: string) {
                 target="_blank"
                 class="cta-btn"
               >
-                提交项目
+                INIT_SUBMISSION()
               </a>
             </div>
           </div>
@@ -273,27 +277,31 @@ function setCategory(cat: string) {
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
 .projects-container {
   width: 100%;
   min-height: calc(100vh - var(--vp-nav-height));
   background-color: var(--vp-c-bg);
   position: relative;
   overflow: hidden;
+  font-family: 'Space Mono', monospace, system-ui;
 }
 
-/* Background Decoration */
-.bg-decoration {
+/* Retro Grid Background */
+.bg-grid {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 500px;
-  background: linear-gradient(135deg,
-    rgba(102, 126, 234, 0.08) 0%,
-    rgba(118, 75, 162, 0.05) 50%,
-    transparent 100%
-  );
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(128, 128, 128, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(128, 128, 128, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
   z-index: 0;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
 }
 
 /* Section Container */
@@ -307,7 +315,7 @@ function setCategory(cat: string) {
 
 /* Hero Section */
 .hero-section {
-  padding: 80px 24px 60px;
+  padding: 100px 24px 80px;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -316,62 +324,96 @@ function setCategory(cat: string) {
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
 }
 
 .hero-icon {
   font-size: 64px;
   margin-bottom: 24px;
-  animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  display: inline-block;
+  filter: drop-shadow(0 0 20px rgba(var(--vp-c-brand-1), 0.5));
 }
 
 .hero-title {
   font-size: 48px;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.tech-text {
+  background: linear-gradient(180deg, var(--vp-c-text-1) 0%, var(--vp-c-text-2) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  position: relative;
 }
 
 .hero-tagline {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 400;
   color: var(--vp-c-text-1);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  font-family: 'Space Mono', monospace;
+}
+
+.prompt {
+  color: var(--vp-c-brand-1);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-color: var(--vp-c-brand-1);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-description {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--vp-c-text-2);
   line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Section Header */
 .section-header {
-  text-align: center;
   margin-bottom: 40px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
 }
 
 .section-title {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-icon {
+  color: var(--vp-c-brand-1);
+  margin-right: 8px;
 }
 
 .section-subtitle {
-  font-size: 16px;
-  color: var(--vp-c-text-2);
+  font-size: 14px;
+  color: var(--vp-c-text-3);
+  font-family: 'Space Mono', monospace;
 }
 
 /* Featured Section */
@@ -382,61 +424,63 @@ function setCategory(cat: string) {
 .featured-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 24px;
+  gap: 32px;
 }
 
 .featured-card {
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
+  transition: all 0.2s ease;
 }
 
 .featured-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
   border-color: var(--vp-c-brand-1);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+  transform: translate(-2px, -2px);
 }
 
 .featured-image {
-  height: 200px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 240px;
+  background: var(--vp-c-bg-soft);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid var(--vp-c-divider);
+  overflow: hidden;
 }
 
 .featured-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.image-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.featured-card:hover .featured-image img {
+  transform: scale(1.05);
 }
 
 .project-icon {
-  font-size: 72px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  font-size: 64px;
+  opacity: 0.8;
 }
 
 .featured-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+  top: 16px;
+  right: 16px;
+  background: var(--vp-c-brand-1);
   color: white;
   padding: 4px 12px;
-  border-radius: 20px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
 }
 
 .featured-content {
@@ -446,18 +490,33 @@ function setCategory(cat: string) {
   flex-direction: column;
 }
 
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
 .project-name {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  margin-bottom: 12px;
+  font-family: var(--vp-font-family-base);
+}
+
+.project-year-badge {
+  font-size: 12px;
+  border: 1px solid var(--vp-c-divider);
+  padding: 2px 8px;
+  color: var(--vp-c-text-2);
+  font-family: 'Space Mono', monospace;
 }
 
 .project-desc {
   font-size: 15px;
   color: var(--vp-c-text-2);
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   flex: 1;
 }
 
@@ -465,23 +524,27 @@ function setCategory(cat: string) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .tech-tag {
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  border: 1px solid transparent;
+}
+
+.featured-card:hover .tech-tag {
+  border-color: var(--vp-c-divider);
 }
 
 .project-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 16px;
+  padding-top: 20px;
   border-top: 1px solid var(--vp-c-divider);
 }
 
@@ -491,29 +554,31 @@ function setCategory(cat: string) {
   gap: 12px;
 }
 
-.author-avatar {
+.author-avatar, .author-avatar-placeholder {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+  border: 1px solid var(--vp-c-divider);
 }
 
 .author-avatar-placeholder {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
 }
 
 .author-details {
   display: flex;
   flex-direction: column;
+}
+
+.author-label {
+  font-size: 10px;
+  color: var(--vp-c-text-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .author-name {
@@ -522,40 +587,37 @@ function setCategory(cat: string) {
   font-size: 14px;
 }
 
-.project-year {
-  font-size: 12px;
-  color: var(--vp-c-text-3);
-}
-
 .project-links {
   display: flex;
-  gap: 8px;
+  gap: 12px;
 }
 
 .link-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--vp-c-bg-mute);
-  color: var(--vp-c-text-2);
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1);
   transition: all 0.2s ease;
+  font-family: 'Space Mono', monospace;
 }
 
 .link-btn:hover {
-  background: var(--vp-c-brand-1);
-  color: white;
+  background: var(--vp-c-text-1);
+  color: var(--vp-c-bg);
+  border-color: var(--vp-c-text-1);
 }
 
-.link-btn.demo {
+.link-btn.primary {
   background: var(--vp-c-brand-1);
   color: white;
+  border-color: var(--vp-c-brand-1);
 }
 
-.link-btn.demo:hover {
+.link-btn.primary:hover {
   background: var(--vp-c-brand-2);
+  border-color: var(--vp-c-brand-2);
 }
 
 /* Filter Section */
@@ -565,32 +627,33 @@ function setCategory(cat: string) {
 
 .category-filter {
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 16px;
   flex-wrap: wrap;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 16px;
 }
 
 .filter-btn {
-  padding: 8px 20px;
-  border-radius: 20px;
+  padding: 6px 12px;
   font-size: 14px;
-  font-weight: 500;
-  border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
+  font-family: 'Space Mono', monospace;
+  border: none;
+  background: transparent;
+  color: var(--vp-c-text-3);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .filter-btn:hover {
-  border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
 }
 
 .filter-btn.active {
-  background: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-1);
-  color: white;
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* Projects Grid */
@@ -600,24 +663,24 @@ function setCategory(cat: string) {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
 }
 
 .project-card {
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
   padding: 24px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .project-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border-color: var(--vp-c-brand-1);
+  transform: translateY(-4px);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
 }
 
 .card-header {
@@ -628,15 +691,13 @@ function setCategory(cat: string) {
 }
 
 .card-icon {
-  font-size: 36px;
+  font-size: 32px;
 }
 
 .card-category {
   font-size: 12px;
   color: var(--vp-c-text-3);
-  background: var(--vp-c-bg-mute);
-  padding: 4px 10px;
-  border-radius: 10px;
+  font-family: 'Space Mono', monospace;
 }
 
 .card-title {
@@ -644,6 +705,7 @@ function setCategory(cat: string) {
   font-weight: 700;
   color: var(--vp-c-text-1);
   margin-bottom: 8px;
+  font-family: var(--vp-font-family-base);
 }
 
 .card-desc {
@@ -658,15 +720,15 @@ function setCategory(cat: string) {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .card-tech {
-  font-size: 12px;
-  color: var(--vp-c-text-3);
-  background: var(--vp-c-bg-mute);
-  padding: 2px 8px;
-  border-radius: 4px;
+  font-size: 11px;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+  padding: 2px 6px;
+  font-family: 'Space Mono', monospace;
 }
 
 .card-tech.more {
@@ -684,70 +746,67 @@ function setCategory(cat: string) {
 .card-author {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: 13px;
-  color: var(--vp-c-text-2);
-}
-
-.author-avatar-small {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
+  color: var(--vp-c-text-1);
   font-weight: 600;
 }
 
-.author-year {
+.author-prefix {
   color: var(--vp-c-text-3);
+  font-weight: 400;
+  font-family: 'Space Mono', monospace;
 }
 
 .card-links {
   display: flex;
-  gap: 8px;
+  gap: 12px;
 }
 
 .card-link {
-  font-size: 16px;
-  opacity: 0.6;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--vp-c-text-2);
+  text-decoration: none;
   transition: all 0.2s ease;
+  font-family: 'Space Mono', monospace;
 }
 
 .card-link:hover {
-  opacity: 1;
-  transform: scale(1.1);
+  color: var(--vp-c-brand-1);
 }
 
 .card-link.primary {
-  opacity: 1;
+  color: var(--vp-c-brand-1);
 }
 
 /* Empty State */
 .empty-state {
   text-align: center;
   padding: 80px 24px;
+  border: 1px dashed var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
 }
 
 .empty-icon {
-  font-size: 72px;
-  margin-bottom: 24px;
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
 }
 
 .empty-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  font-family: 'Space Mono', monospace;
 }
 
 .empty-desc {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--vp-c-text-2);
   line-height: 1.6;
+  font-family: 'Space Mono', monospace;
 }
 
 /* CTA Section */
@@ -756,56 +815,68 @@ function setCategory(cat: string) {
 }
 
 .cta-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 16px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-brand-1);
   padding: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  position: relative;
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid var(--vp-c-divider);
+  pointer-events: none;
 }
 
 .cta-content {
   flex: 1;
+  z-index: 1;
 }
 
 .cta-title {
   font-size: 24px;
   font-weight: 700;
-  color: white;
+  color: var(--vp-c-text-1);
   margin-bottom: 8px;
+  font-family: 'Space Mono', monospace;
 }
 
 .cta-desc {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--vp-c-text-2);
 }
 
 .cta-btn {
-  padding: 14px 28px;
-  background: white;
-  color: #667eea;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
+  padding: 12px 24px;
+  background: var(--vp-c-brand-1);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
   text-decoration: none;
   transition: all 0.2s ease;
   white-space: nowrap;
+  font-family: 'Space Mono', monospace;
+  z-index: 1;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
 }
 
 .cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 36px;
-  }
-
-  .hero-tagline {
-    font-size: 20px;
   }
 
   .featured-grid {
@@ -823,33 +894,13 @@ function setCategory(cat: string) {
   .cta-card {
     flex-direction: column;
     text-align: center;
+    padding: 32px 24px;
   }
-}
-
-@media (max-width: 640px) {
-  .hero-section {
-    padding: 60px 16px 40px;
-  }
-
-  .hero-icon {
-    font-size: 48px;
-  }
-
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .section-title {
-    font-size: 24px;
-  }
-
-  .category-filter {
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
-  }
-
-  .filter-btn {
-    padding: 6px 14px;
-    font-size: 13px;
   }
 }
 </style>
