@@ -51,6 +51,22 @@ const commandLineDoc = defineCollection({
   sidebar: 'auto',
 })
 
+const elementarySystemDoc = defineCollection({
+  type: 'doc',
+  dir: 'essential/elementary-system',
+  linkPrefix: '/essential/elementary-system/',
+  title: '系统知识基础',
+  sidebar: 'auto',
+})
+
+const gitUsageDoc = defineCollection({
+  type: 'doc',
+  dir: 'essential/git-usage',
+  linkPrefix: '/essential/git-usage/',
+  title: '版本控制基础',
+  sidebar: 'auto',
+})
+
 const postsCollection = defineCollection({
   // post 类型，该类型没有侧边栏，有文档列表页
   type: 'post',
@@ -65,4 +81,6 @@ const postsCollection = defineCollection({
 export default defineCollections([
   demoDoc,
   commandLineDoc,
+  elementarySystemDoc,
+  gitUsageDoc,
 ])

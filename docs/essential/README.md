@@ -1,5 +1,5 @@
 ---
-pageLayout: home
+layout: EssentialHomeLayout
 externalLinkIcon: false
 config:
   - type: hero
@@ -11,14 +11,14 @@ config:
       actions:
         -
           theme: brand
-          text: 命令行基础教程 →
+          text: 命令行的基础教程
           link: /essential/command-line/
         -
           theme: brand
-          text: 系统知识基础教程 →
+          text: 系统知识基础教程
           link: /essential/elementary-system/
         -
           theme: brand
-          text: 版本控制基础教程 →
+          text: 版本控制基础教程
           link: /essential/git-usage/
 ---

@@ -42,7 +42,7 @@ export default defineThemeConfig({
   /* 站点页脚 */
     footer: {
       message: '2025 © <a target="_blank" href="https://www.ecustcic.com/">CIC计算机信息交流协会</a></br> Power by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
-      copyright: '',
+      copyright: '本项目遵循 MIT 许可证发布，转载请注明出处。',
     },
 
   /**
