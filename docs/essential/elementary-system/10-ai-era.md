@@ -1,6 +1,6 @@
 ---
 title: 第十章：AI时代：你的手机会越来越懂你，也越来越“吓人”
-createTime: 2025/12/22 17:41:23
+createTime: 2025/12/22 20:15:00
 permalink: /essential/elementary-system/10-ai-era/
 ---
 # 第十章：AI时代：你的手机会越来越懂你，也越来越“吓人”
