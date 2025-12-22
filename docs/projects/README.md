@@ -103,6 +103,6 @@ config:
         - C++
         - OpenGL
         - Assimp
-      github: https://github.com/wenye01/MMD-Player
+      github: https://github.com/wenye01/MMDplayer
       category: 工具
 ---
