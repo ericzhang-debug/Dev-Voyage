@@ -4,6 +4,8 @@ import ProjectsLayout from './layouts/ProjectsLayout.vue'
 import PostTimelineLayout from './layouts/PostTimelineLayout.vue'
 import EssentialHomeLayout from './layouts/EssentialHomeLayout.vue'
 
+import CTASection from './components/CTASection.vue'
+
 export default defineClientConfig({
   layouts: {
     CustomHomeLayout,
@@ -20,5 +22,6 @@ export default defineClientConfig({
 
     // your custom components
     // app.component('CustomComponent', CustomComponent)
+    app.component('CTASection', CTASection)
   },
 })

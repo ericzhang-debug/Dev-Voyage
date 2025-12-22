@@ -2,6 +2,7 @@
 import { Layout } from 'vuepress-theme-plume/client'
 import { Content, usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
+import CTASection from '../components/CTASection.vue'
 
 const frontmatter = usePageFrontmatter<{
   config?: { hero?: Hero }[];
@@ -98,6 +99,14 @@ const hero = computed<Hero>(() => frontmatter.value.config?.[0]?.hero || {})
             </div>
           </div>
         </section>
+
+        <!-- CTA Section with Component -->
+        <CTASection 
+          title=">> START_LEARNING"
+          description="准备好开始你的学习之旅了吗？让我们一起成长！"
+          buttonText="EXPLORE_COURSES()"
+          buttonLink="/fullstack-course/"
+        />
       </div>
     </template>
   </Layout>

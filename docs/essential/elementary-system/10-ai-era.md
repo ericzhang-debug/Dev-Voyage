@@ -436,3 +436,7 @@ A：**没有！** AI可以模拟感情（说“我爱你”），但那只是概
 
 （课程正式完结，但你的数字生活刚刚开始。）
 
+<CTASection title="CONTINUE THE JOURNEY" 
+    description="继续在Dev Voyage中探索更多精彩内容！" 
+    buttonText="Let`s Go!" 
+    buttonLink="/" />

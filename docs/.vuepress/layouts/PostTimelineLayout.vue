@@ -2,6 +2,7 @@
 import { Layout } from 'vuepress-theme-plume/client'
 import { usePageData, usePageFrontmatter } from 'vuepress/client'
 import { ref, onMounted, computed } from 'vue'
+import CTASection from '../components/CTASection.vue'
 
 // 定义帖子类型接口
 interface Post {
@@ -347,21 +348,7 @@ onMounted(() => {
         </section>
 
         <!-- Call to Action -->
-        <section class="cta-section" v-if="!loading && !error">
-          <div class="section-container">
-            <div class="cta-card">
-              <div class="cta-content">
-                <h3 class="cta-title">>> BROWSE_MORE</h3>
-                <p class="cta-desc">
-                  探索更多精彩内容，发现更多学习资源！
-                </p>
-              </div>
-              <a href="/" class="cta-btn">
-                GO_HOME()
-              </a>
-            </div>
-          </div>
-        </section>
+        <CTASection v-if="!loading && !error" />
       </div>
     </template>
   </Layout>
@@ -371,6 +358,7 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 .timeline-container {
+  height: 100%;
   width: 100%;
   min-height: calc(100vh - var(--vp-nav-height));
   background-color: var(--vp-c-bg);
@@ -923,71 +911,6 @@ onMounted(() => {
   font-family: 'Space Mono', monospace;
 }
 
-/* CTA Section */
-.cta-section {
-  padding: 0 0 80px;
-}
-
-.cta-card {
-  background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-brand-1);
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  position: relative;
-  flex-wrap: wrap;
-}
-
-.cta-card::before {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  right: 4px;
-  bottom: 4px;
-  border: 1px solid var(--vp-c-divider);
-  pointer-events: none;
-}
-
-.cta-content {
-  flex: 1;
-  z-index: 1;
-  min-width: 250px;
-}
-
-.cta-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  margin-bottom: 8px;
-  font-family: 'Space Mono', monospace;
-}
-
-.cta-desc {
-  font-size: 16px;
-  color: var(--vp-c-text-2);
-}
-
-.cta-btn {
-  padding: 12px 24px;
-  background: var(--vp-c-brand-1);
-  color: white;
-  font-weight: 700;
-  font-size: 14px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  font-family: 'Space Mono', monospace;
-  z-index: 1;
-  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-}
-
-.cta-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
-}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -1003,11 +926,6 @@ onMounted(() => {
     min-width: auto;
   }
 
-  .cta-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 32px 24px;
-  }
   
   .section-header {
     flex-direction: column;
