@@ -100,13 +100,6 @@ const hero = computed<Hero>(() => frontmatter.value.config?.[0]?.hero || {})
           </div>
         </section>
 
-        <!-- CTA Section with Component -->
-        <CTASection 
-          title=">> START_LEARNING"
-          description="准备好开始你的学习之旅了吗？让我们一起成长！"
-          buttonText="EXPLORE_COURSES()"
-          buttonLink="/fullstack-course/"
-        />
       </div>
     </template>
   </Layout>
