@@ -56,7 +56,7 @@ const getBasePath = (): string => {
     return base.endsWith('/') ? base : base + '/'
   }
   // 开发环境的默认值
-  return '/Dev-Voyage/'
+  return ''
 }
 
 // 获取英雄配置

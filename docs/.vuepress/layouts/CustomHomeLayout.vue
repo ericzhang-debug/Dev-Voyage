@@ -2,7 +2,6 @@
 import { Layout } from 'vuepress-theme-plume/client'
 import { Content, usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
-import CTASection from '../components/CTASection.vue'
 
 const frontmatter = usePageFrontmatter<{
   config?: { hero?: Hero }[];

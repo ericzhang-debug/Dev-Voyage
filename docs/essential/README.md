@@ -12,13 +12,13 @@ config:
         -
           theme: brand
           text: 命令行基础教程
-          link: /Dev-Voyage/essential/command-line/
+          link: command-line/
         -
           theme: brand
           text: 别慌！计算机其实很好懂
-          link: /Dev-Voyage/essential/elementary-system/
+          link: elementary-system/
         -
           theme: brand
           text: 版本控制基础教程
-          link: /Dev-Voyage/essential/git-usage/
+          link: git-usage/
 ---
