@@ -1,5 +1,5 @@
 ---
-title: 文件管理：别再把所有东西都放桌面了！
+title: 第二章：文件管理：别再把所有东西都放桌面了！
 createTime: 2025/12/22 17:06:59
 permalink: /essential/elementary-system/2-file-management/
 ---

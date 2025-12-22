@@ -15,7 +15,7 @@ config:
           link: /Dev-Voyage/essential/command-line/
         -
           theme: brand
-          text: 系统知识基础教程
+          text: 别慌！计算机其实很好懂
           link: /Dev-Voyage/essential/elementary-system/
         -
           theme: brand
