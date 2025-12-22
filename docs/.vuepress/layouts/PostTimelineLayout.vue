@@ -348,7 +348,10 @@ onMounted(() => {
         </section>
 
         <!-- Call to Action -->
-        <CTASection v-if="!loading && !error" />
+        <CTASection title="YOUR_OPION"
+          description="来提交你的文章吧 ~ 我们期待你的精彩内容！"
+          buttonText="SUBMIT_ARTICLE()"
+          button-link="https://github.com/ECUSTCIC-CodeHub/Dev-Voyage/issues/new" v-if="!loading && !error" />
       </div>
     </template>
   </Layout>

@@ -62,10 +62,8 @@ config:
       author: CIC 网站组
       year: '2024'
       techs:
-        - VuePress 2
         - Vue 3
         - TypeScript
-        - Theme Plume
       github: https://github.com/ECUSTCIC-CodeHub/ecustcic-web
       demo: https://www.ecustcic.com/
       category: Web 应用
