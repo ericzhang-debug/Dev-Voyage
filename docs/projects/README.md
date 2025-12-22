@@ -116,10 +116,13 @@ config:
         - Dart
         - SQLite
       github: https://github.com/ChenXu233/ToDoTimeSquare
+      demo: https://github.com/ChenXu233/ToDoTimeSquare/releases/
       category: 移动应用
     - name: MeMexia
       icon: 🧠
       description: 一款通过AI加强知识图谱，甚至自动推导知识图谱的工具。
+      author: ChenXu233
+      authorGithub: https://github.com/ChenXu233
       year: '2025'
       techs:
         - Fastapi
@@ -128,5 +131,6 @@ config:
         - Rust
         - Kuzu
       github: https://github.com/ChenXu233/MeMexia
+      demo: https://github.com/ChenXu233/MeMexia/releases/
       category: 工具
 ---
