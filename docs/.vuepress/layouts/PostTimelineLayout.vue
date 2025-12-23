@@ -218,7 +218,11 @@ const loadTimelineData = async () => {
     if (data && data.posts) {
       data.posts.forEach((post: any) => {
         if (post.image && !post.image.startsWith('http') && try_again) {
-          post.image = `/Dev-Voyage/${post.image}`
+          if (post.image.startsWith('/')){
+            post.image = `/Dev-Voyage${post.image}`
+          } else {
+            post.image = `/Dev-Voyage/${post.image}`
+          }
         }
       })
       timelineData.value = data
