@@ -186,7 +186,7 @@ const loadTimelineData = async () => {
     }
     
     // 构建完整的 JSON URL，从 VuePress 配置获取 base
-    const jsonUrl = `timelines/${jsonFileName}`
+    const jsonUrl = `/timelines/${jsonFileName}`
     console.log('加载时间线数据:', jsonUrl)
     
     let try_again = false;
