@@ -14,6 +14,7 @@ interface Post {
   excerpt?: string
   path: string
   icon?: string
+  image?: string
   category?: string
   featured?: boolean
 }
@@ -103,6 +104,40 @@ const formatDate = (dateString?: string): string => {
   }
 }
 
+// 带重试机制的加载函数
+const loadWithRetry = async (url: string, retryCount = 3, delay = 1000): Promise<Response> => {
+  for (let attempt = 1; attempt <= retryCount; attempt++) {
+    try {
+      console.log(`尝试加载数据 (第 ${attempt} 次):`, url)
+      const response = await fetch(url)
+      
+      if (response.ok) {
+        console.log(`第 ${attempt} 次尝试成功`)
+        return response
+      }
+      
+      console.warn(`第 ${attempt} 次尝试失败，状态码:`, response.status)
+      
+      // 如果不是最后一次尝试，等待后重试
+      if (attempt < retryCount) {
+        console.log(`等待 ${delay}ms 后重试...`)
+        await new Promise(resolve => setTimeout(resolve, delay))
+        // 每次重试后增加延迟时间
+        delay *= 1.5
+      }
+    } catch (err) {
+      console.error(`第 ${attempt} 次尝试出错:`, err)
+      if (attempt < retryCount) {
+        console.log(`等待 ${delay}ms 后重试...`)
+        await new Promise(resolve => setTimeout(resolve, delay))
+        delay *= 1.5
+      }
+    }
+  }
+  
+  throw new Error(`所有 ${retryCount} 次尝试都失败了`)
+}
+
 // 加载时间线数据
 const loadTimelineData = async () => {
   try {
@@ -148,15 +183,35 @@ const loadTimelineData = async () => {
     const jsonUrl = `${basePath}timelines/${jsonFileName}`
     console.log('加载时间线数据:', jsonUrl, 'Base:', basePath)
     
-    const response = await fetch(jsonUrl)
-    console.log('Fetch 响应状态:', response.status)
-    if (!response.ok) {
-      throw new Error(`无法加载时间线数据: ${response.status}`)
-    }
+    // 尝试使用重试机制加载数据
+    const response = await loadWithRetry(jsonUrl)
+    let try_again = false;
     
-    const data = await response.json()
-    console.log('成功加载数据:', data)
-    timelineData.value = data
+    // 如果第一次尝试失败，尝试使用 /Dev-Voyage 前缀重试
+    if (!response.ok) {
+      console.log('第一次尝试失败，尝试使用 /Dev-Voyage 前缀重试')
+      const devVoyageUrl = `/Dev-Voyage${basePath}timelines/${jsonFileName}`
+      try_again = true;
+      console.log('重试 URL:', devVoyageUrl)
+      
+      const retryResponse = await loadWithRetry(devVoyageUrl)
+      if (!retryResponse.ok) {
+        throw new Error(`无法加载时间线数据: ${retryResponse.status}`)
+      }
+      
+      const data = await retryResponse.json()
+      console.log('使用 /Dev-Voyage 前缀重试成功，加载数据:', data)
+      timelineData.value = data
+    } else {
+      const data = await response.json()
+      console.log('成功加载数据:', data)
+      data.posts.forEach((post: any) => {
+        if (post.image && !post.image.startsWith('http')) {
+          post.image = `${basePath}${post.image}`
+        }
+      })
+      timelineData.value = data
+    }
     
   } catch (err) {
     console.error('加载时间线数据失败:', err)
@@ -232,7 +287,15 @@ onMounted(() => {
               >
                 <div class="featured-image">
                   <div class="image-placeholder">
-                    <span class="post-icon">{{ post.icon || '📝' }}</span>
+                    <!-- 优先显示图片，如果没有图片则显示图标 -->
+                    <img 
+                      v-if="post.image" 
+                      :src="post.image" 
+                      :alt="post.title"
+                      class="post-image"
+                      loading="lazy"
+                    />
+                    <span v-else class="post-icon">{{ post.icon || '📝' }}</span>
                   </div>
                   <div class="featured-badge">FEATURED</div>
                 </div>
@@ -309,7 +372,16 @@ onMounted(() => {
                 class="timeline-item-link"
               >
                 <div class="timeline-item">
-                  <div class="timeline-dot"></div>
+                  <div class="timeline-icon">
+                    <!-- 优先显示图片，如果没有图片则显示图标 -->
+                    <img 
+                      v-if="post.image" 
+                      :src="post.image" 
+                      :alt="post.title"
+                      class="timeline-image"
+                    />
+                    <span v-else class="timeline-post-icon">{{ post.icon || '📝' }}</span>
+                  </div>
                   <div class="timeline-content">
                     <div class="timeline-header">
                       <h3 class="timeline-title">
@@ -595,6 +667,46 @@ onMounted(() => {
   opacity: 0.8;
 }
 
+/* 图片样式 */
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.featured-card:hover .post-image {
+  transform: scale(1.05);
+}
+
+/* 时间线图标区域 */
+.timeline-icon {
+  position: absolute;
+  left: -3.5rem;
+  top: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.timeline-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timeline-post-icon {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
 .featured-badge {
   position: absolute;
   top: 16px;
@@ -801,19 +913,6 @@ onMounted(() => {
 
 .timeline-item-link:active .timeline-content {
   transform: translate(-1px, -1px);
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -2.65rem;
-  top: 0.3rem;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  background-color: var(--vp-c-brand);
-  border: 3px solid var(--vp-c-bg);
-  z-index: 1;
-  box-shadow: 0 0 0 3px var(--vp-c-brand-dimm);
 }
 
 .timeline-content {

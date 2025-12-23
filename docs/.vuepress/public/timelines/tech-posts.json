@@ -7,6 +7,10 @@
       "updateTime": "Unknown",
       "author": "未知作者",
       "excerpt": "本文将介绍 Git 的基础命令和日常工作流程，帮助你更好地进行版本控制",
+      "featured": true,
+      "category": "工具",
+      "icon": null,
+      "image": null,
       "path": "/post/posts/git-basic-commands"
     },
     {
@@ -15,6 +19,10 @@
       "updateTime": "Unknown",
       "author": "未知作者",
       "excerpt": "本文将介绍 Vue.js 组件的基础概念、组件通信、以及如何构建可复用的组件",
+      "featured": true,
+      "category": "工具",
+      "icon": "🧩",
+      "image": "plume.svg",
       "path": "/post/posts/vue-components-guide"
     }
   ]

@@ -3,6 +3,10 @@ title: Vue.js 组件开发入门
 createTime: 2025-12-20
 permalink: /post/posts/vue-components-guide
 excerpt: 本文将介绍 Vue.js 组件的基础概念、组件通信、以及如何构建可复用的组件
+featured: true
+category: 工具
+icon: 🧩
+image: plume.svg
 ---
 
 # Vue.js 组件开发入门

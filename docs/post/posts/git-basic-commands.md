@@ -3,6 +3,8 @@ title: Git 基础命令使用指南
 createTime: 2025-12-20
 permalink: /post/posts/git-basic-commands
 excerpt: 本文将介绍 Git 的基础命令和日常工作流程，帮助你更好地进行版本控制
+featured: true
+category: 工具
 ---
 
 # Git 基础命令使用指南

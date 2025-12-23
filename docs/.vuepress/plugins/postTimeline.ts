@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { features } from 'process';
 
 interface TimelineConfig {
   inputPath: string;
@@ -138,6 +139,14 @@ const postTimelinePlugin = (configs: TimelineConfig | TimelineConfig[]) => {
            author: p.frontmatter.author || p.frontmatter.writer || '未知作者',
            // 摘要
            excerpt: p.frontmatter.excerpt || p.frontmatter.summary || '',
+           // 是否置顶
+           featured: p.frontmatter.featured || false,
+           // 标签
+           category: p.frontmatter.category || null,
+           // 图标
+           icon: p.frontmatter.icon || null,
+           // 图片
+           image: p.frontmatter.image || null,
            // 路径 - 使用安全的路径获取函数
            path: getPostPath(p)
          }))
