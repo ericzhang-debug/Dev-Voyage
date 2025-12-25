@@ -1,5 +1,5 @@
 ---
-title: Git 基础命令使用指南
+title: Git 基础命令使用指南（全到爆炸版）
 createTime: 2025-12-20
 permalink: /essential/git-usage/999-git-basic-commands/
 ---
