@@ -11,7 +11,7 @@ config:
       actions:
         -
           theme: brand
-          text: 命令行基础教程
+          text: 命令行是什么——理解黑客的自我修养
           link: command-line/
         -
           theme: brand
@@ -19,6 +19,6 @@ config:
           link: elementary-system/
         -
           theme: brand
-          text: 版本控制基础教程
+          text: 版本控制基础：给你的代码买份“后悔药”
           link: git-usage/
 ---

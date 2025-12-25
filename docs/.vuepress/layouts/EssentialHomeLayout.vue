@@ -19,7 +19,7 @@ const hero = computed<Hero>(() => frontmatter.value.config?.[0]?.hero || {})
 // 计算器：创建课程卡片数据
 const courseCards = computed(() => [
   {
-    title: '命令行基础教程',
+    title: '命令行是什么——理解黑客的自我修养',
     description: '掌握终端操作，提升开发效率',
     icon: '💻',
     link: '/essential/command-line/',
@@ -33,7 +33,7 @@ const courseCards = computed(() => [
     features: ['应用程序', '系统设置', '文件系统', '网络基础']
   },
   {
-    title: '版本控制基础教程',
+    title: '版本控制基础：给你的代码买份“后悔药”',
     description: 'Git版本控制与团队协作',
     icon: '🔧',
     link: '/essential/git-usage/',
