@@ -6,7 +6,7 @@ excerpt: 本文将介绍 Vue.js 组件的基础概念、组件通信、以及如
 featured: true
 category: 工具
 icon: 🧩
-image: plume.svg
+image: /plume.svg
 ---
 
 # Vue.js 组件开发入门

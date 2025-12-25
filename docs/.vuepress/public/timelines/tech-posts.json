@@ -22,7 +22,7 @@
       "featured": true,
       "category": "工具",
       "icon": "🧩",
-      "image": "plume.svg",
+      "image": "/plume.svg",
       "path": "/post/posts/vue-components-guide"
     }
   ]
