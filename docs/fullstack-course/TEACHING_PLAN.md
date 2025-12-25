@@ -1,5 +1,5 @@
 ---
-title: TEACHING_PLAN
+title: TEACHING_PLAN V2
 createTime: 2025/12/19 21:48:03
 permalink: /fullstack-course/teaching-plan/
 ---
