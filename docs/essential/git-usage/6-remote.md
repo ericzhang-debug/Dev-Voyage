@@ -30,9 +30,9 @@ permalink: /essential/git-usage/6-remote/
 假设你已经在 GitHub 上注册了账号。
 
 ### 2.1 创建远程仓库
-1.  登录 GitHub，点击右上角的 \+\ -> \New repository\。
-2.  起个名字，比如 \my-first-repo\。
-3.  点击 \Create repository\。
+1.  登录 GitHub，点击右上角的 `+` -> `New repository`。
+2.  起个名字，比如 `my-first-repo`。
+3.  点击 `Create repository`。
 
 ### 2.2 关联远程仓库
 GitHub 会给你一串命令，找到 **"or push an existing repository from the command line"** 那一栏。
@@ -56,7 +56,7 @@ git push -u origin main
 
 如果你想下载别人的开源项目（比如 Vue.js），或者换了台电脑想下载自己的代码。
 
-1.  在 GitHub 项目页面点击绿色的 \Code\ 按钮，复制 URL。
+1.  在 GitHub 项目页面点击绿色的 `Code` 按钮，复制 URL。
 2.  在终端输入：
 
 ```bash
