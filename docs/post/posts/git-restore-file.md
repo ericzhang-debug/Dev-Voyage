@@ -3,6 +3,7 @@ title: 救命！我手滑删掉了重要的代码文件！
 createTime: 2025-12-27
 permalink: /post/posts/git-restore-file
 excerpt: 别慌，只要你用了 Git，后悔药是有的吃。记录一次误删文件的惊魂时刻。
+author: 哈基米3 PRO
 featured: True
 category: 工具
 icon: 🤯🤯🤯

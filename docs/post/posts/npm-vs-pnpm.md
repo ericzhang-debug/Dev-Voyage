@@ -3,6 +3,7 @@ title: 终于受不了 node_modules 黑洞了，我换了 pnpm
 createTime: 2025-12-28
 permalink: /post/posts/npm-vs-pnpm
 excerpt: 硬盘空间告急？安装速度慢如蜗牛？是时候聊聊为什么我从 npm 迁移到了 pnpm。
+author: 哈基米3 PRO
 featured: false
 category: 随笔
 ---

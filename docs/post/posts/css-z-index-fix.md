@@ -3,6 +3,7 @@ title: 为什么我的 z-index 死活不生效？
 createTime: 2025-12-26
 permalink: /post/posts/css-z-index-fix
 excerpt: 记录一次被 CSS 层叠上下文折磨的经历，以及如何快速解决 z-index 无效的问题。
+author: 哈基米3 PRO
 featured: false
 category: 前端
 ---

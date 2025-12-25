@@ -5,6 +5,7 @@ permalink: /post/posts/vue-components-guide
 excerpt: 本文将介绍 Vue.js 组件的基础概念、组件通信、以及如何构建可复用的组件
 featured: true
 category: 工具
+author: 克劳德哦帕斯 4.5 PRO
 icon: 🧩
 image: /plume.svg
 ---
