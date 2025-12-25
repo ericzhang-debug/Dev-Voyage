@@ -6,10 +6,72 @@ permalink: /fullstack-course/index/
 
 # 全栈培训课程
 
+
+::: important
+目前课程大部分内容已完成，后续我们会继续更新以解决一些小错误。
+
+如果你发现任何问题或有建议，欢迎提出 [Issue](https://github.com/ECUSTCIC-CodeHub/Dev-Voyage/issues/new) 或 [PR](https://github.com/ECUSTCIC-CodeHub/Dev-Voyage/pulls)。
+
+另外，==招募一位站长==。如果有兴趣，欢迎联系我们。
+:::
+
+
 ::: tip 项目驱动，边做边学
 本课程采用**项目驱动**的教学方式——我们不会先讲一堆概念再写代码，而是直接动手做项目，在实践中逐步理解原理。
 
 每一章你都能看到**可见的成果**，从第一天的 Hello World，到最后把网站部署上线，你会亲眼见证自己的项目一步步变得成熟。
+
+传统教学 vs 项目驱动教学
+
+| 传统方式 ❌ | 项目驱动 ✅ |
+|------------|------------|
+| 先学概念，再写代码 | 先写代码，在实践中理解概念 |
+| 学完前端再学后端 | 前后端同步推进，完整体验 |
+| 一开始就讲完所有规范 | 基础规范先做，复杂规范后说 |
+| 理论→实践 | 实践→理论→更深实践 |
+
+学习曲线设计
+
+<svg width="500" height="250" xmlns="http://www.w3.org/2000/svg" style="--axis-color: #333; --text-color: #333; --secondary-color: #666;">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --axis-color: #e0e0e0;
+        --text-color: #e0e0e0;
+        --secondary-color: #b0b0b0;
+      }
+    }
+  </style>
+  
+  <!-- 坐标轴 -->
+  <line x1="50" y1="30" x2="50" y2="200" stroke="var(--axis-color)" stroke-width="1"/>
+  <line x1="50" y1="200" x2="450" y2="200" stroke="var(--axis-color)" stroke-width="1"/>
+  
+  <!-- Y轴标签 -->
+  <text x="25" y="25" font-family="monospace" font-size="14" fill="var(--text-color)">兴趣 📈</text>
+  
+  <!-- 垂直线 -->
+  <line x1="50" y1="30" x2="50" y2="200" stroke="var(--axis-color)" stroke-width="1"/>
+  
+  <!-- 学习曲线 - 斜线上升 -->
+  <line x1="50" y1="200" x2="150" y2="50" stroke="var(--axis-color)" stroke-width="1"/>
+  
+  <!-- 学习曲线 - 水平线 -->
+  <line x1="150" y1="50" x2="450" y2="50" stroke="var(--axis-color)" stroke-width="1"/>
+  
+  <!-- 注释文字 -->
+  <text x="300" y="70" font-family="monospace" font-size="10" fill="var(--secondary-color)" text-anchor="middle">持续看到项目成长，保持动力</text>
+  
+  <text x="100" y="170" font-family="monospace" font-size="10" fill="var(--secondary-color)" text-anchor="middle">快速出成果</text>
+  <text x="100" y="185" font-family="monospace" font-size="8" fill="var(--secondary-color)" text-anchor="middle">第1天就能看到页面！</text>
+  
+  <!-- X轴标签 -->
+  <text x="450" y="220" font-family="monospace" font-size="12" fill="var(--text-color)" text-anchor="end">时间</text>
+  
+  <!-- 箭头 -->
+  <polygon points="455,200 445,195 445,205" fill="var(--axis-color)"/>
+</svg>
+
 :::
 
 ## 第一阶段：快速起步
@@ -135,11 +197,3 @@ permalink: /fullstack-course/index/
 - 云服务器部署
 - GitHub Actions CI/CD
 - 🎉 **成果：网站上线了！发给朋友看！**
-
----
-
-::: warning 课程还在持续更新中
-目前已完成第 0-11 章的内容，后续章节正在编写中。我们会尽快更新，敬请期待！
-
-如果你发现任何问题或有建议，欢迎提出 Issue 或 PR。
-:::
