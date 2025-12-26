@@ -3,6 +3,7 @@ import CustomHomeLayout from './layouts/CustomHomeLayout.vue'
 import ProjectsLayout from './layouts/ProjectsLayout.vue'
 import PostTimelineLayout from './layouts/PostTimelineLayout.vue'
 import EssentialHomeLayout from './layouts/EssentialHomeLayout.vue'
+import AmadeusGateLayout from './layouts/AmadeusGateLayout.vue'
 
 import CTASection from './components/CTASection.vue'
 
@@ -12,6 +13,7 @@ export default defineClientConfig({
     ProjectsLayout,
     PostTimelineLayout,
     EssentialHomeLayout,
+    AmadeusGateLayout,
   },
   enhance({ app }) {
     // built-in components
