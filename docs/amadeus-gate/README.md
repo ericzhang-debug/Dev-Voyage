@@ -2,71 +2,86 @@
 layout: AmadeusGateLayout
 title: Amadeus Gate
 worldLines:
-  - title: 大纲草稿
-    desc: Neural Dreams
+  - title: BigGan 大纲
+    desc: 大纲
     path: /amadeus-gate/biggan.html
+    divergence: 3.248596
+    type: 基础篇
+  - title: 神经网络的觉醒
+    desc: 当感知机睁开双眼，深度学习开始做梦
+    path: /amadeus-gate/neural-network.html
+    divergence: 1.248596
+    type: 基础篇
+  - title: 卷积的凝视
+    desc: CNN用千万只眼睛，解读世界的像素密码
+    path: /amadeus-gate/cnn.html
     divergence: 1.048596
-    type: ALPHA
-  - title: 家人们谁懂啊
-    desc: Attention Mechanism
+    type: 进阶篇
+  - title: 循环的轮回
+    desc: RNN在时间线上反复横跳，只为记住你的名字
+    path: /amadeus-gate/rnn.html
+    divergence: 0.048596
+    type: 进阶篇
+  - title: 变革者的降临
+    desc: Transformer：用注意力机制，凝视宇宙的每一个角落
     path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 家人们，我不写了
-    desc: 我不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 你根本不懂大模型
-    desc: 我真的不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 没人懂大模型
-    path: /amadeus-gate/transformer.html
-    divergence: 123
-  - title: 家人们谁懂啊
-    desc: Attention Mechanism
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 家人们，我不写了
-    desc: 我不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 你根本不懂大模型
-    desc: 我真的不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 没人懂大模型
-    path: /amadeus-gate/transformer.html
-    divergence: 123
-  - title: 家人们谁懂啊
-    desc: Attention Mechanism
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 家人们，我不写了
-    desc: 我不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 你根本不懂大模型
-    desc: 我真的不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 没人懂大模型
-    path: /amadeus-gate/transformer.html
-    divergence: 123
-  - title: 家人们谁懂啊
-    desc: Attention Mechanism
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 家人们，我不写了
-    desc: 我不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 你根本不懂大模型
-    desc: 我真的不写了
-    path: /amadeus-gate/transformer.html
-    divergence: 0
-  - title: 没人懂大模型
-    path: /amadeus-gate/transformer.html
-    divergence: 123
+    divergence: 1.048596
+    type: 核心篇
+  - title: 模型的重构
+    desc: LoRA、PEFT：用最少的参数，唤醒沉睡的巨人
+    path: /amadeus-gate/fine-tuning.html
+    divergence: 0.548596
+    type: 实战篇
+  - title: 提示词的咒语
+    desc: 掌握提示词的艺术，与AI签订灵魂契约
+    path: /amadeus-gate/prompt-engineering.html
+    divergence: 0.248596
+    type: 实战篇
+  - title: 外挂的觉醒
+    desc: RAG：给大模型装上知识库，让它无所不知
+    path: /amadeus-gate/rag.html
+    divergence: 1.148596
+    type: 高级篇
+  - title: 多模态的融合
+    desc: 当文字、图像、音频交织，AI开始理解多元宇宙
+    path: /amadeus-gate/multimodal.html
+    divergence: 0.848596
+    type: 前沿篇
+  - title: 线性代数重构
+    desc: 从矩阵运算到高维空间的几何直觉：特征值分解的物理意义、SVD的数据维度解读、张量运算的多模态统一
+    path: /amadeus-gate/linear-algebra.html
+    divergence: 0.000000
+    type: 基础篇
+  - title: 概率与信息论
+    desc: 贝叶斯推断的认知框架、信息熵与KL散度的学习目标、变分推断的逼近思想
+    path: /amadeus-gate/probability.html
+    divergence: 0.048596
+    type: 基础篇
+  - title: 注意力机制
+    desc: 从加权求和到动态信息路由：自注意力的矩阵形式、多头注意力的子空间表示、注意力作为通用键值存储
+    path: /amadeus-gate/attention.html
+    divergence: 1.048596
+    type: 核心篇
+  - title: 大模型技术
+    desc: 缩放定律的计算优化、涌现能力的顿悟时刻、训练基础设施的并行策略、指令微调与思维链
+    path: /amadeus-gate/large-models.html
+    divergence: 0.548596
+    type: 高级篇
+  - title: Alignment技术
+    desc: RLHF与DPO的算法比较、大模型的可解释性探测、概念神经元与归因分析
+    path: /amadeus-gate/alignment.html
+    divergence: 0.248596
+    type: 高级篇
+  - title: 复杂系统视角
+    desc: 损失景观的优化动力学、混沌理论的李雅普诺夫指数、Transformer的动态图信息流拓扑
+    path: /amadeus-gate/complex-systems.html
+    divergence: 1.148596
+    type: 前沿篇
+  - title: 自由能原理
+    desc: 从拟合数据到最小化意外：自由能原理的生物物理基础、主动推理的统一框架、与强化学习的深刻联系
+    path: /amadeus-gate/free-energy.html
+    divergence: 0.848596
+    type: 前沿篇
 ---
 
 # 混沌与涌现：AI时间线操纵指南

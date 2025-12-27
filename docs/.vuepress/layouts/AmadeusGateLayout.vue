@@ -140,7 +140,7 @@ const initCRT = () => {
     if (i < fullText.length) {
       typedText.value += fullText.charAt(i)
       i++
-      setTimeout(type, Math.random() * 120)
+      setTimeout(type, 1)
     } else {
       isTypingComplete.value = true
     }
@@ -207,13 +207,13 @@ const initChaosCanvas = () => {
   canvasRef.value.height = h
 
   const charsCode = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/\\*&^%$#@!'.split('')
-  const charsMath = '∑∫π∞√∆∇∈∉⊂⊃∪∩∧∨¬⇒⇔∀∃'.split('')
-  const charsNet = '○●□■△▲◇◆'.split('')
+  const charsMath = '∑∫π∞√∆∇∈∉⊂⊃∪∩∧∨¬⇒⇔∀∃=><?1234567890'.split('')
+  const charsNet = '○●□■△▲◇◆◈◉◊◌◍◎●○◔◕◖◗◣◤◢◥◨◧◩◪◫◬◭◮◯'.split('')
 
   const drops: { x: number, y: number, speed: number, text: string, color: string }[] = []
   
   // Dynamic drop count based on screen width
-  const dropCount = w < 768 ? 400 : 1400
+  const dropCount = w < 768 ? 200 : 1000
 
   for (let i = 0; i < dropCount; i++) {
     const type = Math.random()
@@ -232,7 +232,7 @@ const initChaosCanvas = () => {
     drops.push({
       x: Math.random() * w,
       y: Math.random() * h - h,
-      speed: 1 + Math.random() * 10, // Faster speed
+      speed: 5 + Math.random() * 10, // Faster speed
       text,
       color
     })
@@ -434,14 +434,49 @@ const replay = () => {
 
         <!-- RNN: Looping Chain -->
         <div v-if="activeStructures.rnn" class="structure-rnn">
-           <div class="rnn-nodes">
-             <div class="rnn-node">h-1</div>
-             <div class="rnn-arrow">→</div>
-             <div class="rnn-node active">h0</div>
-             <div class="rnn-arrow">→</div>
-             <div class="rnn-node">h1</div>
-           </div>
-           <div class="rnn-loop">↻</div>
+           <svg class="rnn-svg" viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+             <defs>
+               <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                 <polygon points="0 0, 10 3.5, 0 7" fill="#0ff" />
+               </marker>
+               <filter id="glow">
+                 <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                 <feMerge>
+                   <feMergeNode in="coloredBlur"/>
+                   <feMergeNode in="SourceGraphic"/>
+                 </feMerge>
+               </filter>
+             </defs>
+
+             <!-- Connection Lines -->
+             <line x1="70" y1="80" x2="105" y2="80" stroke="#0ff" stroke-width="2" marker-end="url(#arrowhead)" class="rnn-conn" />
+             <line x1="160" y1="80" x2="195" y2="80" stroke="#0ff" stroke-width="2" marker-end="url(#arrowhead)" class="rnn-conn" />
+
+             <!-- Node 1: h_t-1 -->
+             <g class="rnn-node-group opacity-50">
+               <rect x="20" y="55" width="50" height="50" rx="8" stroke="#0ff" stroke-width="2" fill="rgba(0, 255, 255, 0.1)" stroke-dasharray="4 2" />
+               <text x="45" y="85" fill="#0ff" text-anchor="middle" font-family="monospace" font-size="14">h<tspan dy="5" font-size="10">t-1</tspan></text>
+             </g>
+
+             <!-- Node 2: h_t (Active) -->
+             <g class="rnn-node-group active">
+               <rect x="110" y="55" width="50" height="50" rx="8" stroke="#0ff" stroke-width="2" fill="rgba(0, 255, 255, 0.2)" filter="url(#glow)" />
+               <text x="135" y="85" fill="#fff" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold">h<tspan dy="5" font-size="10">t</tspan></text>
+               
+               <!-- Recurrent Loop -->
+               <path d="M 130 55 C 105 20, 165 20, 140 55" fill="none" stroke="#0ff" stroke-width="2" marker-end="url(#arrowhead)" class="rnn-loop-path" />
+               <!-- Moving Particle -->
+               <circle r="3" fill="#fff" filter="url(#glow)">
+                 <animateMotion dur="1.5s" repeatCount="indefinite" path="M 130 55 C 105 20, 165 20, 140 55" />
+               </circle>
+             </g>
+
+             <!-- Node 3: h_t+1 -->
+             <g class="rnn-node-group opacity-50">
+               <rect x="200" y="55" width="50" height="50" rx="8" stroke="#0ff" stroke-width="2" fill="rgba(0, 255, 255, 0.1)" stroke-dasharray="4 2" />
+               <text x="225" y="85" fill="#0ff" text-anchor="middle" font-family="monospace" font-size="14">h<tspan dy="5" font-size="10">t+1</tspan></text>
+             </g>
+           </svg>
            <div class="label">RECURRENT</div>
         </div>
 
@@ -485,13 +520,13 @@ const replay = () => {
         
         <div class="nav-container">
           <header class="nav-header">
-            <div class="brand">
+            <VPLink class="brand" href="/">
               <div class="logo-small"></div>
               <div class="text">
                 <div class="h1">AMADEUS GATE</div>
                 <div class="h2">SYSTEM ONLINE</div>
               </div>
-            </div>
+            </VPLink>
 
             <div class="nav-controls">
               <button class="nav-btn" @click="replay">[ REPLAY ]</button>
@@ -881,39 +916,22 @@ const replay = () => {
   flex-direction: column;
   align-items: center;
   animation: flash-cycle 1.2s ease-out forwards;
-  transform: scale(4); /* Make it huge */
+  transform: scale(3);
 }
 
-.rnn-nodes {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  color: #0ff;
+.rnn-svg {
+  width: 300px;
+  height: 140px;
+  overflow: visible;
 }
 
-.rnn-node {
-  width: 50px;
-  height: 50px;
-  border: 2px solid #0ff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+.rnn-loop-path {
+  stroke-dasharray: 10;
+  animation: dash-flow 1s linear infinite;
 }
 
-.rnn-node.active {
-  background: #0ff;
-  color: #000;
-  box-shadow: 0 0 20px #0ff;
-}
-
-.rnn-loop {
-  font-size: 40px;
-  color: #fff;
-  margin-top: -10px;
-  animation: spin 1s linear infinite;
+@keyframes dash-flow {
+  to { stroke-dashoffset: -20; }
 }
 
 /* Transformer Structure */
@@ -1199,6 +1217,9 @@ const replay = () => {
   align-items: center;
   gap: 20px;
 }
+.brand:hover .logo-small {
+  box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+}
 
 .logo-small {
   width: 40px;
@@ -1359,6 +1380,13 @@ const replay = () => {
   text-transform: uppercase;
 }
 
+.nav-card:hover .type-badge {
+  background: #ffffff33;
+  color: #ffffff;
+  border-color: #fff;
+  box-shadow: -3px 2px #ff0000, 3px 2px #0000ff;
+}
+
 .div-meter {
   font-family: monospace;
   font-size: 0.8rem;
@@ -1374,6 +1402,31 @@ const replay = () => {
 /* Hover effect: Crazy jump for the number */
 .nav-card:hover .div-meter .value {
   animation: crt-jitter 0.05s infinite;
+  color: #fff;
+  text-shadow: 2px 0 #f00, -2px 0 #00f;
+}
+
+/* Hover effect: Type badge turns white with distortion */
+.nav-card:hover .type-badge {
+  color: #fff;
+  border-color: #fff;
+  text-shadow: 2px 0 #f00, -2px 0 #00f;
+}
+
+/* Hover effect: Label turns white with distortion */
+.nav-card:hover .div-meter .label {
+  color: #fff;
+  text-shadow: 2px 0 #f00, -2px 0 #00f;
+}
+
+/* Hover effect: Status indicator turns white with distortion */
+.nav-card:hover .status-indicator .dot {
+  background: #fff;
+  box-shadow: 2px 0 #f00, -2px 0 #00f;
+}
+
+/* Hover effect: Status text turns white with distortion */
+.nav-card:hover .status-indicator .text {
   color: #fff;
   text-shadow: 2px 0 #f00, -2px 0 #00f;
 }
@@ -1396,8 +1449,8 @@ const replay = () => {
 }
 
 .nav-card:hover .glitch-title {
-  color: #fff;
-  text-shadow: 2px 0 #f00, -2px 0 #00f;
+  color: #ffffffcc;
+  text-shadow: -5px 2px #f00, 3px 2px #00f;
 }
 
 .deco-line {
@@ -1411,9 +1464,15 @@ const replay = () => {
   opacity: 0.8;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-family: 'Courier New', Courier, monospace; /* More retro font */
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-card:hover .desc {
+  color: #ffffffcc;
+  text-shadow: -5px 2px #f00, -3px 2px #00f;
 }
 
 /* Footer */
@@ -1455,10 +1514,11 @@ const replay = () => {
 }
 
 .nav-card:hover .jump-cmd {
-  background: #0f0;
-  color: #000;
-  border-color: #0f0;
-  animation: blink 2s  infinite;
+  color: #fff;
+  background: #00000033;
+  text-shadow: 2px 0 #f00, -2px 0 #00f;
+  border-color: #fff;
+  animation: blink 2s steps(6) infinite;
 }
 
 /* Hide Decorative Corners */
@@ -1589,6 +1649,7 @@ const replay = () => {
   .desc {
     font-size: 0.85rem;
     -webkit-line-clamp: 2;
+    line-clamp: 3;
   }
 }
 
