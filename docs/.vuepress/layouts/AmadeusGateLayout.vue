@@ -63,6 +63,61 @@ const fluctuateDivergence = (baseVal: string) => {
 
 let fluctuationInterval: number
 
+// --- Glitch Animation Logic ---
+const glitchIntervals = new Map<HTMLElement, number>()
+
+const startGlitch = (e: MouseEvent) => {
+  const card = e.currentTarget as HTMLElement
+  const bg = card.querySelector('.card-bg') as HTMLElement
+  if (!bg) return
+
+  // Clear any existing interval for this card
+  if (glitchIntervals.has(card)) {
+    clearInterval(glitchIntervals.get(card))
+  }
+
+  const intervalId = window.setInterval(() => {
+    // 80% chance of small jitter
+    // 20% chance of strong glitch
+    const isStrong = Math.random() > 0.9
+    
+    let tx, ty, skewX, skewY, scale
+
+    if (isStrong) {
+      // Strong glitch
+      tx = (Math.random() - 0.5) * 2 // -10 to 10
+      ty = (Math.random() - 0.5) * 2
+      skewX = (Math.random() - 0.5) * 80 // -25 to 25 deg
+      skewY = (Math.random() - 0.5) * 80
+      scale = 1.1 + Math.random() * 0.1 // 1.1 to 1.2
+    } else {
+      // Small jitter
+      tx = (Math.random() - 0.5) * 4 // -2 to 2
+      ty = (Math.random() - 0.5) * 4
+      skewX = (Math.random() - 0.5) * 2 // -1 to 1 deg
+      skewY = (Math.random() - 0.5) * 2
+      scale = 1.1
+    }
+
+    bg.style.transform = `translate(${tx}px, ${ty}px) skew(${skewX}deg, ${skewY}deg) scale(${scale})`
+
+  }, 50) // Update every 50ms
+
+  glitchIntervals.set(card, intervalId)
+}
+
+const stopGlitch = (e: MouseEvent) => {
+  const card = e.currentTarget as HTMLElement
+  if (glitchIntervals.has(card)) {
+    clearInterval(glitchIntervals.get(card))
+    glitchIntervals.delete(card)
+  }
+  const bg = card.querySelector('.card-bg') as HTMLElement
+  if (bg) {
+    bg.style.transform = '' // Reset
+  }
+}
+
 const STORAGE_KEY = 'amadeus-gate-visited'
 
 // --- Audio Context (Simulated for now) ---
@@ -551,6 +606,8 @@ const replay = () => {
                 :href="line.path"
                 class="nav-card"
                 :style="{ animationDelay: `${index * 0.1}s` }"
+                @mouseenter="startGlitch"
+                @mouseleave="stopGlitch"
               >
                 <div class="card-3d-wrapper">
                   <div class="card-face">
@@ -1568,20 +1625,9 @@ const replay = () => {
 
 .nav-card:hover .card-bg {
   opacity: 1;
-  /* Hover: Crazy distortion */
-  animation: crt-distortion 0.1s infinite; /* Very fast jitter */
+  /* Animation handled by JS for randomness */
   /* Highlight: Restore color, boost brightness, remove retro tint */
   filter: grayscale(0%) contrast(1.1) brightness(1.2) sepia(0%);
-}
-
-/* Removed .card-bg:hover as it is covered by content and overridden by animation */
-
-@keyframes crt-distortion {
-  0% { transform: translate(0, 0) skewX(0deg) scale(1.1); }
-  25% { transform: translate(-5px, 2px) skewX(5deg) scale(1.1); }
-  50% { transform: translate(5px, -2px) skewX(-5deg) scale(1.1); }
-  75% { transform: translate(-2px, 5px) skewX(2deg) scale(1.1); }
-  100% { transform: translate(2px, -5px) skewX(-2deg) scale(1.1); }
 }
 
 /* --- MOBILE ADAPTATION --- */
