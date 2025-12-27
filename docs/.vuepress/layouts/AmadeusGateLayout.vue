@@ -88,22 +88,24 @@ onMounted(() => {
   fluctuationInterval = window.setInterval(() => {
     // Fluctuate global divergence
     divergence.value = fluctuateDivergence('1.048596')
-    
+    const rand = Math.random()
     // Fluctuate distortion frequency (Dynamic Fisheye)
-    if (Math.random() > 0.8) {
+    if ( rand < 0.93) {
       // X: Low freq (0.001 - 0.021) for large waves
       // Y: Low freq (0.01 - 0.2) for subtle vertical distortion
-      const freqX = (0.0001 + Math.random() * 0.0001).toFixed(4)
-      const freqY = (0.0001 + Math.random() * 0.0009).toFixed(4)
+      const freqX = (0.00001 + Math.random() * 0.00001).toFixed(4)
+      const freqY = (0.00001 + Math.random() * 0.00009).toFixed(4)
       turbulenceFrequency.value = `${freqX} ${freqY}`
-    }else if (Math.random() > 0.99){
+    } else if (rand > 0.93 && rand < 0.99) {
+      const freqX = (0.001 + Math.random() * 0.01).toFixed(4)
+      const freqY = (0.01 + Math.random() * 0.1).toFixed(4)
+      turbulenceFrequency.value = `${freqX} ${freqY}`
+    }
+    else if (rand > 0.99) {
       const freqX = (0.0001 + Math.random() * 0.01).toFixed(4)
       const freqY = (0.1 + Math.random() * 0.9).toFixed(4)
       turbulenceFrequency.value = `${freqX} ${freqY}`
     }
-
-    
-
     // Fluctuate world lines
     if (displayWorldLines.value.length > 0) {
       displayWorldLines.value.forEach((line, idx) => {
