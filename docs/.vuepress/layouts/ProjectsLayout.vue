@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Layout } from 'vuepress-theme-plume/client'
-import { usePageFrontmatter } from 'vuepress/client'
+import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { computed, ref, onMounted } from 'vue'
 
 interface Project {
@@ -29,13 +29,6 @@ interface PageConfig {
   categories?: string[]
 }
 
-const test_connect = ref(false)
-
-onMounted(async () => {
-  const response = await fetch("/Dev-Voyage/")
-  test_connect.value = response.ok
-})
-
 const frontmatter = usePageFrontmatter<{ config?: PageConfig }>()
 
 const config = computed<PageConfig>(() => frontmatter.value.config || {})
@@ -43,10 +36,19 @@ const hero = computed(() => config.value.hero || {})
 
 const projects = computed(() =>
   (config.value.projects || []).map(p => {
-    if (p.image && !p.image.startsWith('http') && test_connect.value) {
-      p.image = `/Dev-Voyage/${p.image}`
+    // Create a shallow copy to avoid mutating the original object if needed, 
+    // though map returns a new array, the objects inside are references.
+    const project = { ...p }
+    
+    if (project.image && !project.image.startsWith('http')) {
+      project.image = withBase(project.image)
     }
-    return p
+    
+    if (project.authorAvatar && !project.authorAvatar.startsWith('http')) {
+      project.authorAvatar = withBase(project.authorAvatar)
+    }
+    
+    return project
   })
 )
 

@@ -7,7 +7,7 @@ worldLines:
     path: /amadeus-gate/biggan.html
     divergence: 3.248596
     type: 基础篇
-    bgImage: atom.jpg
+    bgImage: /img/amadeus-gate/atom.jpg
   - title: 神经网络的觉醒
     desc: 当感知机睁开双眼，深度学习开始做梦
     path: /amadeus-gate/neural-network.html

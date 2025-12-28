@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, nextTick, watch } from 'vue'
-import { usePageFrontmatter } from '@vuepress/client'
+import { usePageFrontmatter, withBase } from '@vuepress/client'
 import { VPLink } from 'vuepress-theme-plume/client'
 // --- Constants & State ---
 const STAGE = {
@@ -612,7 +612,7 @@ const replay = () => {
                 <div class="card-3d-wrapper">
                   <div class="card-face">
                     <div class="card-bg-container">
-                      <div class="card-bg" :style="{ backgroundImage: `url(${line.bgImage || 'https://picsum.photos/seed/amadeus/600/400'})` }"></div>
+                        <div class="card-bg" :style="{ backgroundImage: `url(${line.bgImage ? withBase(line.bgImage) : 'https://picsum.photos/seed/amadeus/600/400'})` }"></div>
                     </div>
                     <div class="card-content">
                       <!-- HUD Header -->

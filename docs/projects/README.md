@@ -23,7 +23,7 @@ config:
       description: CIC 协会官方技术学习平台，包含全栈开发课程、基础教程和项目案例展示。采用 VuePress 构建，支持 Markdown 写作和丰富的交互功能。
       author: ChenXu233
       authorGithub: https://github.com/ChenXu233
-      year: '2024'
+      year: '2025'
       techs:
         - VuePress 2
         - Vue 3
@@ -33,6 +33,8 @@ config:
       demo: https://ecustcic-codehub.github.io/Dev-Voyage/
       category: 学习项目
       featured: true
+      authorAvatar: http://q2.qlogo.cn/headimg_dl?dst_uin=1964324406&spec=100
+      image: /img/project/文档站.png
     - name: 全栈博客系统
       icon: 📝
       description: 课程配套项目，使用 Nuxt 3 + FastAPI 构建的完整博客系统，包含用户认证、文章发布、评论互动等功能。
@@ -57,6 +59,7 @@ config:
         - FastAPI
       github: https://github.com/nonebot/nonebot2/
       category: 开源贡献
+      image: https://camo.githubusercontent.com/cd899c15996c92a60277e2ea0f5cd93e92735aa9969c977f353ea43c3a337313/68747470733a2f2f6e6f6e65626f742e6465762f6c6f676f2e706e67
     - name: CIC 官方网站
       icon: 🌐
       description: 华东理工大学计算机信息交流协会官方网站，展示协会活动、成员风采和技术资源。
@@ -70,6 +73,7 @@ config:
       category: Web 应用
       featured: true
       image: /img/project/华理计算机信息交流协会.png
+      authorAvatar: https://avatars.githubusercontent.com/u/199935966?s=200&v=4
     - name: 华东理工大学宿舍电费监控系统
       icon: 💰
       description: 一个基于 React 和 Cloudflare Workers 的全栈电量监测系统模板。

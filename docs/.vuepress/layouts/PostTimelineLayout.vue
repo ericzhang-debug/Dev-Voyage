@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Layout } from 'vuepress-theme-plume/client'
-import { usePageData, usePageFrontmatter } from 'vuepress/client'
+import { usePageData, usePageFrontmatter, withBase } from 'vuepress/client'
 import { ref, onMounted, computed } from 'vue'
 import CTASection from '../components/CTASection.vue'
 import { RouterLink } from 'vue-router'
@@ -186,43 +186,25 @@ const loadTimelineData = async () => {
     }
     
     // 构建完整的 JSON URL，从 VuePress 配置获取 base
-    const jsonUrl = `/timelines/${jsonFileName}`
+    const jsonUrl = withBase(`/timelines/${jsonFileName}`)
     console.log('加载时间线数据:', jsonUrl)
     
-    let try_again = false;
     let data: any = null;
     
     try {
-      // 第一次尝试：使用原始URL路径
+      // 尝试加载数据
       const response = await loadWithRetry(jsonUrl)
       data = await response.json()
-      console.log('第一次尝试成功，加载数据:', data)
-    } catch (firstError) {
-      console.log('第一次尝试失败，尝试使用 /Dev-Voyage 前缀重试:', firstError)
-      try_again = true;
-      
-      // 第二次尝试：使用 /Dev-Voyage 前缀
-      const devVoyageUrl = `/Dev-Voyage/timelines/${jsonFileName}`
-      console.log('重试 URL:', devVoyageUrl)
-      
-      const retryResponse = await loadWithRetry(devVoyageUrl)
-      if (!retryResponse.ok) {
-        throw new Error(`无法加载时间线数据: ${retryResponse.status}`)
-      }
-      
-      data = await retryResponse.json()
-      console.log('使用 /Dev-Voyage 前缀重试成功，加载数据:', data)
+      console.log('加载数据成功:', data)
+    } catch (err) {
+      throw new Error(`无法加载时间线数据: ${err instanceof Error ? err.message : String(err)}`)
     }
     
     // 处理图片路径
     if (data && data.posts) {
       data.posts.forEach((post: any) => {
-        if (post.image && !post.image.startsWith('http') && try_again) {
-          if (post.image.startsWith('/')){
-            post.image = `/Dev-Voyage${post.image}`
-          } else {
-            post.image = `/Dev-Voyage/${post.image}`
-          }
+        if (post.image && !post.image.startsWith('http')) {
+          post.image = withBase(post.image)
         }
       })
       timelineData.value = data
